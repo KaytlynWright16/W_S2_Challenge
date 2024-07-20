@@ -25,7 +25,11 @@ if (profile.active === false) {
 // 👉 CHALLENGE 2
     function mineSweeper(grid, x, y) {
 if (x < 1 || x > 3 || y < 1 || y > 3) {
-  return "invalid coordinates"
+  return "invalid coordinates";
+} else if (grid[y-1][x-1] === "🟥") {
+  return "🟥 💀"
+} else {
+  return "🟦 🥳"
 }
 
 }
@@ -33,12 +37,39 @@ if (x < 1 || x > 3 || y < 1 || y > 3) {
 
     // 👉 CHALLENGE 3
     function booleanize(obj) {
-      
-  }
+      for (const booProp in obj) {
+      if (booProp.length > 9) {
+        return "shorten all prop names to 9 chars or less";
+       } 
+        if (obj[booProp] === 0) {
+        obj[booProp] = false; 
+       }
+       if (obj[booProp] === 1) {
+obj[booProp] = true; 
+       } 
+       if (obj[booProp] === null) {
+        delete obj[booProp]
+       }
+       }
+       return obj 
+      }
+  
 
     // 👉 CHALLENGE 4
     function scrub(text, forbidden) {
-
+if (text.length === 0 || forbidden.length === 0) {
+  return text; 
+}
+let splitText = text.split(" "); 
+let result = []
+for (let split of splitText) {
+  if (forbidden.includes(split)) {
+    result.push("x".repeat(split.length));
+  } else {
+    result.push(split)
+  }
+}
+return result.join(" ")
     }
 
     // 👉 CHALLENGE 5 (bonus, NOT graded)
